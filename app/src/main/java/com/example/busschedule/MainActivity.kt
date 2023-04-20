@@ -21,14 +21,32 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.example.busschedule.ui.BusScheduleApp
 import com.example.busschedule.ui.theme.BusScheduleTheme
+import java.io.File
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //copyDB()
         setContent {
             BusScheduleTheme {
                 BusScheduleApp()
             }
         }
+    }
+
+    private fun copyDB() {
+        val dbFile = assets.open("databases/bus_schedule.db").buffered()
+
+        dbFile.use {
+            val fileOutput =
+               getDatabasePath("bus_schedule.db").outputStream()
+
+            fileOutput.use {
+                fileOutput.write(dbFile.readBytes())
+            }
+
+            fileOutput.flush()
+        }
+
     }
 }
