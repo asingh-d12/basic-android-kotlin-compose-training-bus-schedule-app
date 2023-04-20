@@ -23,6 +23,7 @@ abstract class BusScheduleDatabase : RoomDatabase() {
                     klass = BusScheduleDatabase::class.java,
                     name = DATABASE_NAME
                 )
+                    .createFromAsset("databases/bus_schedule.db")
                     .fallbackToDestructiveMigration()
                     .build()
                     .also {

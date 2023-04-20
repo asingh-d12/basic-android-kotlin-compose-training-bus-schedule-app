@@ -226,9 +226,10 @@ fun BusScheduleDetails(
                         )
                     )
                 }
+                println(schedule.arrivalTimeInMillis)
                 Text(
                     text = SimpleDateFormat("h:mm a", Locale.getDefault())
-                        .format(schedule.arrivalTimeInMillis),
+                        .format(schedule.arrivalTimeInMillis * 1000),
                     style = MaterialTheme.typography.body1.copy(
                         fontSize = 20.sp,
                         fontWeight = FontWeight(600)
